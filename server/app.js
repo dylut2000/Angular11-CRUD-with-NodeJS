@@ -9,13 +9,19 @@ const bodyParser = require('body-parser');
 // init app
 const app = express();
 // db URL, ⚠️ use an environment variable for this
-const DB_URL = 'mongodb://localhost:27017/books';
+const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/books';
 // get Port from .environment variable or use 5000
 const PORT = process.env.PORT || 5000;
+// routes
+const bookRoute = require('./routes/book');
 
 
+// log
+app.use(morgan('dev'));
 // use cross origine access
 app.use(cors());
+// use routes
+app.use('/books', bookRoute);
 
 
 mongoose.Promise = global.Promise;
@@ -27,8 +33,6 @@ mongoose
   })
     .then(() => console.log('Database connected'),
     (error) => console.log('Database error: ' + error));
-
-
 
 
 app.listen(PORT, () => console.log(`App listening on port:${PORT}`));
