@@ -1,2 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">Simple CRUD app</a>
 
-<router-outlet></router-outlet>
+
+
+        <div class="d-flex">
+          <a class="nav-link" routerLinkActive="active" routerLink="/books-list">Show Books</a>
+
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-book">Add Books</a>
+        </div>
+
+
+</nav>
+
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>
